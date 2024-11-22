@@ -4110,6 +4110,11 @@ class nusoap_server extends nusoap_base
         $try_class = '';
         if (strlen($delim) > 0 && substr_count($this->methodname, $delim) == 1) {
             $try_class = substr($this->methodname, 0, strpos($this->methodname, $delim));
+
+            // MODIFIED BY GABOR 2016-08-24
+            $try_class = 'App\Controller\\' . $try_class;
+            // ~~~~~~~~~~
+		
             if (class_exists($try_class)) {
                 // get the class and method name
                 $class = $try_class;
@@ -4127,6 +4132,11 @@ class nusoap_server extends nusoap_base
         }
 
         // does method exist?
+
+        // MODIFIED BY GABOR 2016-08-24
+        $this->methodname1 = 'app\controller\\' . $this->methodname;
+        // ~~~~~~~~~~
+	    
         if ($class == '') {
             if (!function_exists($this->methodname)) {
                 $this->debug("in invoke_method, function '$this->methodname' not found!");
