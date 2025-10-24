@@ -4138,7 +4138,7 @@ class nusoap_server extends nusoap_base
         // ~~~~~~~~~~
 	    
         if ($class == '') {
-            if (!function_exists($this->methodname)) {
+            if (!function_exists($this->methodname1)) {
                 $this->debug("in invoke_method, function '$this->methodname' not found!");
                 $this->result = 'fault: method not found';
                 $this->fault('SOAP-ENV:Client', "method '$this->methodname'('$orig_methodname') not defined in service('$try_class' '$delim')");
@@ -4592,7 +4592,7 @@ class nusoap_server extends nusoap_base
             if ($HTTPS == '1' || $HTTPS == 'on') {
                 $SCHEME = 'https';
             } else {
-                $SCHEME = 'http';
+                $SCHEME = 'https';
             }
             $soapaction = "$SCHEME://$SERVER_NAME$SCRIPT_NAME/$name";
         }
